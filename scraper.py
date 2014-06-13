@@ -28,21 +28,24 @@ for s in range(scraperwiki.sqlite.get_var('upto'), len(b)):
     # workedparttime = tables[(tables.index('Worked part-time') + 2)]
     # awayfromwork = tables[(tables.index('Away from work') + 2)]
     # tertiary = tables[(tables.index('University or tertiary institution') + 2)]
-    rent_under_30pc = tables[(tables.index('Households where rent payments are less than 30% of household income') + 2)]
-    rent_over_30pc = tables[(tables.index('Households where rent payments are 30%, or greater, of household income') + 2)]
-    mortgage_under_30pc = tables[(tables.index('Households where mortgage payments are less than 30% of household income') + 2)]
-    mortgage_over_30pc = tables[(tables.index('Households where mortgage payments are 30%, or greater, of household income') + 2)]
+    try:
+        rent_under_30pc = tables[(tables.index('Households where rent payments are less than 30% of household income') + 2)]
+        rent_over_30pc = tables[(tables.index('Households where rent payments are 30%, or greater, of household income') + 2)]
+        mortgage_under_30pc = tables[(tables.index('Households where mortgage payments are less than 30% of household income') + 2)]
+        mortgage_over_30pc = tables[(tables.index('Households where mortgage payments are 30%, or greater, of household income') + 2)]
 
-    
-    print sa1.text
-    print b[s]
+        
+        print sa1.text
+        print b[s]
 
-    data = {}
-    data['sa1'] = sa1.text
-    data['sa1code'] = sa1code
-    data['rent_under_30pc'] = rent_under_30pc
-    data['rent_over_30pc'] = rent_over_30pc
-    data['mortgage_under_30pc'] = mortgage_under_30pc
-    data['mortgage_over_30pc'] = mortgage_over_30pc
-    data['source'] = b[s]
-    scraperwiki.sqlite.save(unique_keys=["sa1"], data=data)
+        data = {}
+        data['sa1'] = sa1.text
+        data['sa1code'] = sa1code
+        data['rent_under_30pc'] = rent_under_30pc
+        data['rent_over_30pc'] = rent_over_30pc
+        data['mortgage_under_30pc'] = mortgage_under_30pc
+        data['mortgage_over_30pc'] = mortgage_over_30pc
+        data['source'] = b[s]
+        scraperwiki.sqlite.save(unique_keys=["sa1"], data=data)
+    except:
+        pass
